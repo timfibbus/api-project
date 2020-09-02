@@ -15,7 +15,7 @@ public class ApiController {
 	@Autowired
 	RecipeService recipeApi;
 	
-	@GetMapping("/recipes/")
+	@GetMapping("/search/")
 	public List<Recipe> search(@RequestParam("search") String search){
 		return recipeApi.searchRecipe(search);
 	}

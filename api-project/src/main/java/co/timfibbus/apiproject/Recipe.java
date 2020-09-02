@@ -10,6 +10,7 @@ public class Recipe {
 	private String label;
 	@JsonProperty("healthLabels")
 	private List<String> healthLabels;
+	@JsonProperty("totalNutrients")
 	private TotalNutrients totalNutrients;
 
 	
