@@ -16,9 +16,9 @@ public class RecipeService {
 	private RestTemplate rt;
 	
 	@Value("${api-id}")
-	String apiId = "cae97066";
+	String apiId;
 	@Value("${api-key}")
-	String apiKey = "31f1a911efcacdd5593742de99a0c0ba";
+	String apiKey;
 	
 	{
 		ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
@@ -31,7 +31,7 @@ public class RecipeService {
 	
 	public List<Recipe> searchRecipe(String search){
 		// 1 specify url
-		String url = "https://api.edamam.com/search?q={search}&app_id={appId}cae97066&app_key={appKey}";
+		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}cae97066&app_key={apiKey}";
 		// 2 call api, return requested shit.
 		
 		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey);
