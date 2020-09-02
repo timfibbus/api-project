@@ -1,0 +1,10 @@
+package co.timfibbus.apiproject;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ApiController {
+	
+	
+
+}
