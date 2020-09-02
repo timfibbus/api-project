@@ -14,8 +14,7 @@ public class TotalNutrients {
 	public void setEnergy(Energy energy) {
 		this.energy = energy;
 	}
-	
-	
+
 	
 	
 	
