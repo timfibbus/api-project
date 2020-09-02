@@ -6,9 +6,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Food and Recipe Search API</title>
 </head>
 <body>
+  <header>
+    <h1 class="title">food-search</h1>
+    <form id="search" name="search">
+      <input name="name" placeholder="Type the name of a food: ">
+      <button type="submit">SEARCH</button>
+    </form>
+  </header>
+  <section>
+    <div id="result"></div>
+  </section>
 
 </body>
 </html>
