@@ -2,12 +2,16 @@ package co.timfibbus.apiproject;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Recipe {
 
-	private List<String> healthLabels;
-	private TotalNutrients totalNutrients;
 	private String uri;
 	private String label;
+	@JsonProperty("healthLabels")
+	private List<String> healthLabels;
+	private TotalNutrients totalNutrients;
+
 	
 	public List<String> getHealthLabels() {
 		return healthLabels;
