@@ -2,6 +2,7 @@ package co.timfibbus.apiproject;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -14,8 +15,10 @@ public class RecipeService {
 
 	private RestTemplate rt;
 	
-	String appId = "cae97066";
-	String appKey = "31f1a911efcacdd5593742de99a0c0ba";
+	@Value("${api-id}")
+	String apiId = "cae97066";
+	@Value("${api-key}")
+	String apiKey = "31f1a911efcacdd5593742de99a0c0ba";
 	
 	{
 		ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
@@ -31,7 +34,7 @@ public class RecipeService {
 		String url = "https://api.edamam.com/search?q={search}&app_id={appId}cae97066&app_key={appKey}";
 		// 2 call api, return requested shit.
 		
-		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, appId, appKey);
+		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey);
 		
 		return response.getRecipes();
 	}
