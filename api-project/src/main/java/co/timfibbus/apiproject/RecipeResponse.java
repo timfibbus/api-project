@@ -18,5 +18,10 @@ public class RecipeResponse {
 		this.recipes = recipes;
 	}
 
+	@Override
+	public String toString() {
+		return "RecipeResponse [recipes=" + recipes + "]";
+	}
+
 	
 }
