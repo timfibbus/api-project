@@ -30,6 +30,10 @@ public class FavoritesApiController {
 	public List<Favorite> deleteFavorite(@RequestParam("id") Long id){
 		dao.deleteById(id);
 		return dao.findAll();
-		
 	}
+	
+	@PostMapping("/add-favorite/")
+	public String addFavorite() {
+		return "favorites";
 	}
+}
