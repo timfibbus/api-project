@@ -4,22 +4,30 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class ApiController {
 
 	@Autowired
 	RecipeService recipeApi;
-	@Autowired
-	FavoritesDao dao;
+	
+	@RequestMapping("/")
+	public String home() {
+		return "home";
+	}
 	
 	@GetMapping("/recipes/")
-	public List<Hit> search(@RequestParam("search") String search){
-		return recipeApi.searchRecipe(search);
+	public String search(@RequestParam("search") String search, Model model){
+		List<Hit> hits = recipeApi.searchRecipe(search);
+		System.out.println(hits);
+		model.addAttribute("hits", hits);
+		return "search-results";
 	}
 	
 	@GetMapping("/recipes/calories")
@@ -28,8 +36,8 @@ public class ApiController {
 	}
 	
 	@GetMapping("/recipes/diet/")
-	public List<Hit> searchDiet(@RequestParam("restrictions") List<String> restrictions, @RequestParam("search") String search, @RequestParam("calories") int calories){
-		return recipeApi.searchByDiet(restrictions, search, calories);
+	public List<Hit> searchDiet(@RequestParam("health") List<String> health, @RequestParam("search") String search, @RequestParam("calories") int calories){
+		return recipeApi.searchByDiet(health, search, calories);
 	}
 
 }

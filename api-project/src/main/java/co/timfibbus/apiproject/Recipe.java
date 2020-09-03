@@ -2,17 +2,27 @@ package co.timfibbus.apiproject;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Recipe {
 
 	private String uri;
 	private String label;
+	private String url;
 	@JsonProperty("healthLabels")
 	private List<String> healthLabels;
 	private Double calories;
 	private TotalNutrients totalNutrients;
 	private int yield; 
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	
 	public List<String> getHealthLabels() {
 		return healthLabels;

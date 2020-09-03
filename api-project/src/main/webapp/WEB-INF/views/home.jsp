@@ -11,16 +11,17 @@
 <body>
   <header>
     <h1 class="title">food-search</h1>
-    <form id="search" name="search">
-      <input name="name" placeholder="Searching by keyword: ">
-      <input name="nutrients" placeholder="nutrients: ">
-      <input name="helth lebels" placeholder="health lebels: ">
-      <button type="submit">SEARCH</button>
+    <form id="search" name="search" action="/recipes/">
+      <input type="text" name="search" placeholder="Searching by keyword: ">
+            <button type="submit">SEARCH</button>
     </form>
+      <input type="number" name="calories" placeholder="calories per serving: ">
+      <input type="select" name="health" placeholder="health lebels: ">
+      <button type="submit">SEARCH</button>
+
   </header>
   <section>
     <div id="result"></div>
   </section>
-
 </body>
 </html>

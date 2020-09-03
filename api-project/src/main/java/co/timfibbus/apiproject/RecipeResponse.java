@@ -17,7 +17,6 @@ public class RecipeResponse {
 		this.hits = hits;
 	}
 
-
 	@Override
 	public String toString() {
 		return "RecipeResponse [recipes=" + hits + "]";
