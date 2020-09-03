@@ -14,6 +14,8 @@ public class ApiController {
 
 	@Autowired
 	RecipeService recipeApi;
+	@Autowired
+	FavoritesDao dao;
 	
 	@GetMapping("/recipes/")
 	public List<Hit> search(@RequestParam("search") String search){
