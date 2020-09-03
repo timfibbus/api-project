@@ -12,7 +12,9 @@
   <header>
     <h1 class="title">food-search</h1>
     <form id="search" name="search">
-      <input name="name" placeholder="Type the name of a food: ">
+      <input name="name" placeholder="Searching by keyword: ">
+      <input name="nutrients" placeholder="nutrients: ">
+      <input name="helth lebels" placeholder="health lebels: ">
       <button type="submit">SEARCH</button>
     </form>
   </header>
