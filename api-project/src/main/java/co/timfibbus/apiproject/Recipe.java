@@ -11,7 +11,6 @@ public class Recipe {
 	@JsonProperty("healthLabels")
 	private List<String> healthLabels;
 	private TotalNutrients totalNutrients;
-
 	
 	public List<String> getHealthLabels() {
 		return healthLabels;
@@ -37,6 +36,5 @@ public class Recipe {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-		
-	
+			
 }

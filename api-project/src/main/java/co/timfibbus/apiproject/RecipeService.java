@@ -29,22 +29,30 @@ public class RecipeService {
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
 	
-	public List<Recipe> searchRecipe(String search){
+	public List<Hit> findAll(){
+		// 1 specify url
+		String url = "https://api.edamam.com/search?app_id={apiId}&app_key={apiKey}";
+		// 2 call api, return requested shit.
+		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, apiId, apiKey);
+		return response.getHits();
+	}
+	
+	public List<Hit> searchRecipe(String search){
 		// 1 specify url
 		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}&app_key={apiKey}";
 		// 2 call api, return requested shit.
 		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey);
-		return response.getRecipes();
+		return response.getHits();
 	}
 	
-	public List<Recipe> searchByMaxCalories(float max){
-		String url = "https://api.edamam.com/search?calories=0-{max}&app_id={apiId}&app_key={apiKey}";
+	public List<Hit> searchByMaxCalories(String search, float max){
+		String url = "https://api.edamam.com/search?q={search}&calories=0-{max}&app_id={apiId}&app_key={apiKey}";
 		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, max, apiId, apiKey);
 
-		return response.getRecipes();
+		return response.getHits();
 	}
 	
-	public List<Recipe> searchByDiet(List<String> restrictions){
+	public List<Hit> searchByDiet(List<String> restrictions){
 		String restrictionsList = null;
 		for (String s : restrictions) {
 			if (restrictionsList != null) {
@@ -54,7 +62,7 @@ public class RecipeService {
 		}
 		String url = "https://api.edamam.com/search?healthLabels={restrictionsList}&app_id={apiId}&app_key={apiKey}";
 		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, restrictionsList, apiId, apiKey);
-		return response.getRecipes();
+		return response.getHits();
 		
 	}
 }
