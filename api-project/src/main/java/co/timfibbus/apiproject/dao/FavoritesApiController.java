@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +25,11 @@ public class FavoritesApiController {
 	public List<Favorite> searchFavorites(@RequestParam(required=false) String label) {
 			return dao.findByLabelContainsIgnoreCase(label);
 		}
+	
+	@PostMapping("/favorites/delete")
+	public List<Favorite> deleteFavorite(@RequestParam("id") Long id){
+		dao.deleteById(id);
+		return dao.findAll();
+		
+	}
 	}

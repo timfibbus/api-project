@@ -12,14 +12,15 @@
 
 	<div>	
 		<c:forEach var="hit" items="${hits }" >
+			<form method="post" action="add-favorite">
 			<p>
-			<c:out value="${hit.recipe.uri }" />
+			<c:url value="${hit.recipe.uri }" />
 			</p>
 			<p>
 			<c:out value="${hit.recipe.label }" />
 			</p>
 			<p>
-			<c:out value="${hit.recipe.url }" />
+			<c:url value="${hit.recipe.url }" />
 			</p>
 			<p>
 			<c:out value="${hit.recipe.calories }" />
@@ -33,8 +34,11 @@
 				<c:out value="${healthLabels }" />
 				</li>
 			</c:forEach>
+			<input type="submit" value="add to favorites" name="add" />
 			</p>
+				</form>
 		</c:forEach>
+	
 	</div>
 
 </body>
