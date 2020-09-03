@@ -23,5 +23,4 @@ public class RecipeResponse {
 		return "RecipeResponse [recipes=" + hits + "]";
 	}
 
-
 }
