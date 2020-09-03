@@ -6,28 +6,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RecipeResponse {
 
-	
 	@JsonProperty("hits")
-	private List<Recipe> recipes;
+	private List<Hit> hits;
 
-	public List<Recipe> getRecipes() {
-		return recipes;
+	public List<Hit> getHits() {
+		return hits;
 	}
 
-	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = recipes;
+	public void setHit(List<Hit> hits) {
+		this.hits = hits;
 	}
+
 
 	@Override
 	public String toString() {
-		return "RecipeResponse [recipes=" + recipes + "]";
+		return "RecipeResponse [recipes=" + hits + "]";
 	}
 
-	
-
-	
-
-	
-
-	
 }

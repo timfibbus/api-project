@@ -16,18 +16,18 @@ public class ApiController {
 	RecipeService recipeApi;
 	
 	@GetMapping("/recipes/")
-	public List<Recipe> search(@RequestParam("search") String search){
+	public List<Hit> search(@RequestParam("search") String search){
 		return recipeApi.searchRecipe(search);
 	}
 	
 	@GetMapping("/recipes/calories")
-	public List<Recipe> searchCalories(@RequestParam("max") int max){
-		return recipeApi.searchByMaxCalories(max);
+	public List<Hit> searchCalories(@RequestParam("search") String search, @RequestParam("calories") int calories){
+		return recipeApi.searchByMaxCalories(search, calories);
 	}
 	
-	@GetMapping("/recipes/diet")
-	public List<Recipe> searchDiet(@RequestParam("restrictions") List<String> restrictions){
-		return recipeApi.searchByDiet(restrictions);
+	@GetMapping("/recipes/diet/")
+	public List<Hit> searchDiet(@RequestParam("restrictions") List<String> restrictions, @RequestParam("search") String search, @RequestParam("calories") int calories){
+		return recipeApi.searchByDiet(restrictions, search, calories);
 	}
 
 }

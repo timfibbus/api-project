@@ -15,7 +15,4 @@ public class TotalNutrients {
 		this.energy = energy;
 	}
 
-	
-	
-	
 }
