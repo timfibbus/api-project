@@ -11,7 +11,10 @@ public class Recipe {
 	private String uri;
 	private String label;
 	private String url;
-	@JsonProperty("healthLabels")
+	private String image;
+	private String source;
+	private String shareAs;
+	private List<String> ingredientLines;
 	private List<String> healthLabels;
 	private Double calories;
 	private TotalNutrients totalNutrients;
@@ -59,6 +62,30 @@ public class Recipe {
 	}
 	public void setYield(int yield) {
 		this.yield = yield;
+	}
+	public String getShareAs() {
+		return shareAs;
+	}
+	public void setShareAs(String shareAs) {
+		this.shareAs = shareAs;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public List<String> getIngredientLines() {
+		return ingredientLines;
+	}
+	public void setIngredientLines(List<String> ingredientLines) {
+		this.ingredientLines = ingredientLines;
 	}
 			
 }

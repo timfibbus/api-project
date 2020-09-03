@@ -36,8 +36,10 @@ public class ApiController {
 	}
 	
 	@GetMapping("/recipes/diet/")
-	public List<Hit> searchDiet(@RequestParam("health") List<String> health, @RequestParam("search") String search, @RequestParam("calories") int calories){
-		return recipeApi.searchByDiet(health, search, calories);
+	public String searchDiet(@RequestParam("search") String search, @RequestParam("calories") int calories, @RequestParam("health") List<String> health, Model model){
+		List<Hit> hits = recipeApi.searchByDiet(search, calories, health);
+		model.addAttribute("hits", hits);
+		return "search-results";
 	}
 
 }
