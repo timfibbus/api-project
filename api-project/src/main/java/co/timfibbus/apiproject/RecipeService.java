@@ -9,7 +9,6 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
 @Service
 public class RecipeService {
 
@@ -25,16 +24,7 @@ public class RecipeService {
 			request.getHeaders().add(HttpHeaders.USER_AGENT, "DouglasW");
 			return execution.execute(request, body);
 		};
-		
 		rt = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
-	}
-	
-	public List<Hit> findAll(){
-		// 1 specify url
-		String url = "https://api.edamam.com/search?app_id={apiId}&app_key={apiKey}";
-		// 2 call api, return requested shit.
-		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, apiId, apiKey);
-		return response.getHits();
 	}
 	
 	public List<Hit> searchRecipe(String search){
@@ -45,23 +35,19 @@ public class RecipeService {
 		return response.getHits();
 	}
 	
-	public List<Hit> searchByMaxCalories(String search, float max){
-		String url = "https://api.edamam.com/search?q={search}&calories=0-{max}&app_id={apiId}&app_key={apiKey}";
-		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, max, apiId, apiKey);
-
+	public List<Hit> searchByMaxCalories(String search, int calories){
+		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}&app_key={apiKey}&calories=0-{calories}";
+		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey, calories);
 		return response.getHits();
 	}
 	
-	public List<Hit> searchByDiet(List<String> restrictions){
+	public List<Hit> searchByDiet(List<String> restrictions, String search, int calories){
 		String restrictionsList = null;
 		for (String s : restrictions) {
-			if (restrictionsList != null) {
-				restrictionsList=restrictionsList+",";
-			}
-			restrictionsList=restrictionsList+s;
+			restrictionsList=restrictionsList+"&health="+s;
 		}
-		String url = "https://api.edamam.com/search?healthLabels={restrictionsList}&app_id={apiId}&app_key={apiKey}";
-		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, restrictionsList, apiId, apiKey);
+		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}&app_key={apiKey}{restrictionList}";
+		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, calories, restrictionsList, apiId, apiKey);
 		return response.getHits();
 		
 	}

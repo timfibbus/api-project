@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RecipeResponse {
 
-	
 	@JsonProperty("hits")
 	private List<Hit> hits;
 
@@ -18,8 +17,4 @@ public class RecipeResponse {
 		this.hits = hits;
 	}
 
-	
-	
-
-	
 }

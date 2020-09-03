@@ -21,13 +21,13 @@ public class ApiController {
 	}
 	
 	@GetMapping("/recipes/calories")
-	public List<Hit> searchCalories(@RequestParam("search") String search, @RequestParam("max") int max){
-		return recipeApi.searchByMaxCalories(search, max);
+	public List<Hit> searchCalories(@RequestParam("search") String search, @RequestParam("calories") int calories){
+		return recipeApi.searchByMaxCalories(search, calories);
 	}
 	
-	@GetMapping("/recipes/diet")
-	public List<Hit> searchDiet(@RequestParam("restrictions") List<String> restrictions){
-		return recipeApi.searchByDiet(restrictions);
+	@GetMapping("/recipes/diet/")
+	public List<Hit> searchDiet(@RequestParam("restrictions") List<String> restrictions, @RequestParam("search") String search, @RequestParam("calories") int calories){
+		return recipeApi.searchByDiet(restrictions, search, calories);
 	}
 
 }

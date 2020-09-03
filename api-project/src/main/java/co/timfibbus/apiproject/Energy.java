@@ -2,7 +2,6 @@ package co.timfibbus.apiproject;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 public class Energy {
 
 	@JsonProperty("quantity")

@@ -10,7 +10,9 @@ public class Recipe {
 	private String label;
 	@JsonProperty("healthLabels")
 	private List<String> healthLabels;
+	private Double calories;
 	private TotalNutrients totalNutrients;
+	private int yield; 
 	
 	public List<String> getHealthLabels() {
 		return healthLabels;
@@ -35,6 +37,18 @@ public class Recipe {
 	}
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	public Double getCalories() {
+		return calories;
+	}
+	public void setCalories(Double calories) {
+		this.calories = calories;
+	}
+	public int getYield() {
+		return yield;
+	}
+	public void setYield(int yield) {
+		this.yield = yield;
 	}
 			
 }
