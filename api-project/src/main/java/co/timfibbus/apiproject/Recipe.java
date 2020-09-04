@@ -19,6 +19,15 @@ public class Recipe {
 	private Double calories;
 	private TotalNutrients totalNutrients;
 	private int yield; 
+	private int caloriesPer;
+	
+	public int getCaloriesPer() {
+		return (int) (calories/yield);
+	}
+	
+	public void setCaloriesPer(Double calories, int yield){
+		caloriesPer = (int) (calories/yield);
+	}
 	
 	public String getUrl() {
 		return url;
@@ -87,5 +96,6 @@ public class Recipe {
 	public void setIngredientLines(List<String> ingredientLines) {
 		this.ingredientLines = ingredientLines;
 	}
+
 			
 }

@@ -22,6 +22,21 @@ public class ApiController {
 		return "home";
 	}
 	
+	@GetMapping("/search/")
+	public String query(@RequestParam("search") String search, @RequestParam("calories") int calories, @RequestParam("health") List<String> health, Model model) {
+		
+		String url = "/recipes/";
+		
+		if (String.valueOf(calories) != "") {
+			url = url+"/calories/";
+		}
+		if (!health.isEmpty()) {
+			url= url+"/health/";
+		}
+		return url;
+	
+	}
+	
 	@GetMapping("/recipes/")
 	public String search(@RequestParam("search") String search, Model model){
 		List<Hit> hits = recipeApi.searchRecipe(search);
@@ -30,16 +45,27 @@ public class ApiController {
 		return "search-results";
 	}
 	
-	@GetMapping("/recipes/calories")
-	public List<Hit> searchCalories(@RequestParam("search") String search, @RequestParam("calories") int calories){
-		return recipeApi.searchByMaxCalories(search, calories);
+	@GetMapping("/recipes/calories/")
+	public String searchCalories(@RequestParam("search") String search, @RequestParam("calories") int calories, Model model){
+		List<Hit> hits = recipeApi.searchByMaxCalories(search, calories);
+		model.addAttribute("hits", hits);
+		return "search-results";
+		
 	}
 	
-	@GetMapping("/recipes/diet/")
+	@GetMapping("/recipes/calories/health/")
 	public String searchDiet(@RequestParam("search") String search, @RequestParam("calories") int calories, @RequestParam("health") List<String> health, Model model){
-		List<Hit> hits = recipeApi.searchByDiet(search, calories, health);
+		List<Hit> hits = recipeApi.searchByAll(search, calories, health);
 		model.addAttribute("hits", hits);
 		return "search-results";
 	}
+	
+	@GetMapping("/recipes/health/")
+	public String healthOnly(@RequestParam("search") String search, @RequestParam("health") List<String> health, Model model) {
+		List<Hit> hits = recipeApi.searchByKeyDiet(search, health);
+		model.addAttribute("hits", hits);
+		return "search-results";
+	}
+	
 
 }

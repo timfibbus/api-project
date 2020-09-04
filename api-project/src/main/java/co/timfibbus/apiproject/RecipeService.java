@@ -41,7 +41,7 @@ public class RecipeService {
 		return response.getHits();
 	}
 	
-	public List<Hit> searchByDiet(String search, int calories, List<String> health){
+	public List<Hit> searchByAll(String search, int calories, List<String> health){
 		String restrictionsList ="";
 		for (String s : health) {
 			
@@ -50,6 +50,19 @@ public class RecipeService {
 		}
 		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}&app_key={apiKey}&calories=0-{calories}&{restrictionList}";
 		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey, calories, restrictionsList);
+		return response.getHits();
+		
+	}
+	
+	public List<Hit> searchByKeyDiet(String search, List<String> health){
+		String restrictionsList ="";
+		for (String s : health) {
+			
+			restrictionsList=restrictionsList+"health="+s+"$";
+			
+		}
+		String url = "https://api.edamam.com/search?q={search}&app_id={apiId}&app_key={apiKey}&{restrictionList}";
+		RecipeResponse response = rt.getForObject(url, RecipeResponse.class, search, apiId, apiKey, restrictionsList);
 		return response.getHits();
 		
 	}

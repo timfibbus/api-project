@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,15 +20,15 @@
 				<td><input type="text" name="name" autofocus/></td>
 			</tr>
 			<tr>
-				<th scope="nutrients">nutrients</th>
+				<th scope="row">nutrients</th>
 				<td><input type="nutrients" name="nutrients" /></td>
 			</tr>
 			<tr>
-			<th scope="helth lebels">health lebels</th>
-				<td><input type="helth lebels" name="helth lebels" /></td>
+			<th scope="row"></th>
+				<td><input type="" name="health" /></td>
 			</tr>
 		</table>
-		<button type="submit" class="btn btn-primary">Add</button>
+
 		<a class="btn link" href="">Cancel</a>
 		</form>
 	</div>
